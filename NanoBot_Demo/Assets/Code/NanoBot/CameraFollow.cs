@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
     //GO Functions
 	void Start ()
     {
-		
+		//Edit test
 	}
 	
 	void Update ()

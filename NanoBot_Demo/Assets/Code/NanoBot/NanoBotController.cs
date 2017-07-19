@@ -7,10 +7,18 @@ public class NanoBotController : MonoBehaviour
     //Functions//
 
     //GO Functions
-	void Start ()
+    private void Awake()
+    {
+        //Set up Weapons
+        
+    }
+
+
+    void Start ()
     {
         //Set up Keyboard for now
-        this.Strategy = new KeyboardController();
+        this.controllerStrategy = new KeyboardController();
+       
 
         //Grab Necessary Components
         this.RB = this.GetComponent<Rigidbody2D>();
@@ -27,7 +35,7 @@ public class NanoBotController : MonoBehaviour
 	
 	void FixedUpdate ()
     {
-        this.Strategy.Update(this);
+        this.controllerStrategy.Update(this);
         Debug.Log("Velocity: " + this.RB.velocity);
 	}
 
@@ -100,7 +108,8 @@ public class NanoBotController : MonoBehaviour
     //Private//
 
     //Strategy
-    private ControllerStrategy Strategy;
+    private ControllerStrategy controllerStrategy;
+    private WeaponStrategy weaponStrategy;
 
     //GO Components
     private Rigidbody2D RB;
