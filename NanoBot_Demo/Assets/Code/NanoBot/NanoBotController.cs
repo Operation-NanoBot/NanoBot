@@ -7,17 +7,15 @@ public class NanoBotController : MonoBehaviour
     //Functions//
 
     //GO Functions
-    private void Awake()
-    {
-        //Set up Weapons
-        
-    }
 
 
     void Start ()
     {
         //Set up Keyboard for now
         this.controllerStrategy = new KeyboardController();
+
+        //Set up Weapons
+        this.weaponStrategy = new Weapon_Projectile();
        
 
         //Grab Necessary Components
@@ -100,6 +98,12 @@ public class NanoBotController : MonoBehaviour
     //{
     //    this.RB.AddForceAtPosition(this.transform.up * this.Thrust_Forward / 2.0f, this.Right_Thrust.position);
     //}
+
+    //Fire
+    public void Fire_Weapon()
+    {
+        this.weaponStrategy.Fire();
+    }
 
 
 
