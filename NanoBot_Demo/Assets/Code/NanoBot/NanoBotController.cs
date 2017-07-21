@@ -16,11 +16,15 @@ public class NanoBotController : MonoBehaviour
 
         //Set up Weapons
         this.weaponStrategy = new Weapon_Projectile();
+
+        //Set Fire State
+        this.fireState = new CanFire_State(this.weaponStrategy);
        
 
         //Grab Necessary Components
         this.RB = this.GetComponent<Rigidbody2D>();
         this.ThrustTransform = this.GetComponentsInChildren<Transform>()[1];
+        this.MissileTransform = this.GetComponentsInChildren<Transform>()[2];
         //this.Thruster = this.GetComponentsInChildren<Transform>()[2];
         //this.Left_Thrust = this.GetComponentsInChildren<Transform>()[2];
         //this.Right_Thrust = this.GetComponentsInChildren<Transform>()[3];
@@ -29,12 +33,13 @@ public class NanoBotController : MonoBehaviour
         //this.RB.centerOfMass = new Vector2(0.0f, 1.0f);
         this.RB.drag = this.LinearDrag;
         this.RB.angularDrag = this.AngularDrag;
+        this.RB.gravityScale = 0.0f;
 	}
 	
 	void FixedUpdate ()
     {
         this.controllerStrategy.Update(this);
-        Debug.Log("Velocity: " + this.RB.velocity);
+        //Debug.Log("Velocity: " + this.RB.velocity);
 	}
 
     //Movement Functions
@@ -99,12 +104,31 @@ public class NanoBotController : MonoBehaviour
     //    this.RB.AddForceAtPosition(this.transform.up * this.Thrust_Forward / 2.0f, this.Right_Thrust.position);
     //}
 
-    //Fire
+    //Weapon Functions
     public void Fire_Weapon()
     {
-        this.weaponStrategy.Fire();
+        //this.weaponStrategy.Fire();
+        this.fireState.Fire(this);
     }
 
+    public void Cooldown()
+    {
+        this.fireState = new NoFire_State();
+        StartCoroutine(ReactivateFireAbility());
+    }
+
+    //Get Functions
+    public Vector3 GetMissilePosition()
+    {
+        return this.MissileTransform.position;
+    }
+
+    //CoRoutines
+    IEnumerator ReactivateFireAbility()
+    {
+        yield return new WaitForSeconds(CooldownTime);
+        this.fireState = new CanFire_State(this.weaponStrategy);
+    }
 
 
     //Variables//
@@ -114,10 +138,15 @@ public class NanoBotController : MonoBehaviour
     //Strategy
     private ControllerStrategy controllerStrategy;
     private WeaponStrategy weaponStrategy;
+    private FireState fireState;
+
+    //Prefabs
+    public GameObject ProjectilePrefab;
 
     //GO Components
     private Rigidbody2D RB;
     private Transform ThrustTransform;
+    private Transform MissileTransform;
     //private Transform Left_Thrust;
     //private Transform Right_Thrust;
     //private Transform Thruster;
@@ -133,5 +162,9 @@ public class NanoBotController : MonoBehaviour
     private float LinearDrag;
     [SerializeField]
     private float AngularDrag;
+
+    //Weapon
+    [SerializeField]
+    private float CooldownTime;
 
 }

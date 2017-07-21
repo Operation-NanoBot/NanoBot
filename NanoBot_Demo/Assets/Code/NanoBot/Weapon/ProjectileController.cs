@@ -7,17 +7,44 @@ public class ProjectileController : MonoBehaviour
     //Functions//
 
 	//GO Functions
-	void Awake ()
+	void Awake () //This code is initiated when Instantiate is called right away from what I read.
     {
         //Grab Components
         this.RB = this.GetComponent<Rigidbody2D>();
+
+        //Set Physics Data
+        this.RB.gravityScale = 0.0f;
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
-        this.RB.AddForce(this.transform.up * ProjectileForce);
-	}
+        if (this.RB.velocity.sqrMagnitude < (MaxVelocity * MaxVelocity))
+        {
+            //this.RB.AddForce(this.transform.up * ProjectileForce);
+            this.RB.MovePosition(this.transform.position + (this.transform.up * ProjectileSpeed));
+        }
+        //Debug.Log("Velocity: " + this.RB.velocity);
+    }
+
+    //Rotation
+    public void RotateProjectile(float zRot)
+    {
+        this.transform.Rotate(0.0f, 0.0f, zRot);
+    }
+
+    //Destruction
+    public void DestructTimerStart()
+    {
+        this.StartCoroutine(DestroySelf());
+    }
+
+    //CoRoutines
+    IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(DestroyTime);
+        Destroy(this.gameObject);
+    }
 
     //Variables//
     
@@ -28,5 +55,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField]
     private float MaxVelocity;
     [SerializeField]
-    private float ProjectileForce;
+    private float ProjectileSpeed;
+    [SerializeField]
+    private float DestroyTime;
 }

@@ -10,7 +10,7 @@ public class NoFire_State : FireState
 
     }
 
-    public override void Fire_Projectile(Weapon_Projectile WP)
+    public override void Fire(NanoBotController NC)
     {
         //Intentionally Left Blank for now
     }

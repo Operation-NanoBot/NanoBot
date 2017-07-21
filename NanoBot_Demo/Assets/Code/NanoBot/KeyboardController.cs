@@ -32,5 +32,10 @@ public class KeyboardController : ControllerStrategy
         {
             pNB.RotateCCW2();
         }
+
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            pNB.Fire_Weapon();
+        }
     }
 }

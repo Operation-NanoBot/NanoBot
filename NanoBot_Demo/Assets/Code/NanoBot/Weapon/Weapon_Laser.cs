@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon_Laser : WeaponStrategy
 {
 
-    public override void Fire()
+    public override void Fire(NanoBotController NC)
     {
 
     }

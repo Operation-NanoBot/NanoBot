@@ -11,20 +11,25 @@ public class Weapon_Projectile : WeaponStrategy
     public Weapon_Projectile()
         :base()
     {
-        this.fireState = new CanFire_State();
+        
     }
 
     //Overridden Functions
-    public override void Fire()
+    public override void Fire(NanoBotController NC)
     {
-        this.fireState.Fire_Projectile(this);
+        this.CreateProjectile(NC);
+        NC.Cooldown();
     }
 
-    public void CreateProjectile()
+    public void CreateProjectile(NanoBotController NC)
     {
-        ProjectileController PC = GameObject.Inst
+        GameObject GO = GameObject.Instantiate(NC.ProjectilePrefab, NC.GetMissilePosition(), Quaternion.identity);
+        GO.GetComponent<ProjectileController>().RotateProjectile(NC.transform.eulerAngles.z);
+        GO.GetComponent<ProjectileController>().DestructTimerStart();
     }
+
+    
 
     //Variables//
-    private FireState fireState;
+    //private FireState fireState;
 }
