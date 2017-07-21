@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class CanFire_State : FireState
 {
-    public CanFire_State(WeaponStrategy WS)
-        :base(WS)
+    public CanFire_State()
+        :base()
     {
 
     }
 
-    public override void Fire(NanoBotController NC)
+    public override void Fire(NanoBotController NC, Weapon_Projectile WP)
     {
-        this.weaponStrategy.Fire(NC);
+        WP.CreateProjectile(NC);
     }
 }

@@ -15,11 +15,8 @@ public class NanoBotController : MonoBehaviour
         this.controllerStrategy = new KeyboardController();
 
         //Set up Weapons
-        this.weaponStrategy = new Weapon_Projectile();
-
-        //Set Fire State
-        this.fireState = new CanFire_State(this.weaponStrategy);
-       
+        this.weaponStrategy = new Weapon_Projectile(this.CooldownTime);
+        //this.weaponStrategy = new Weapon_Laser();
 
         //Grab Necessary Components
         this.RB = this.GetComponent<Rigidbody2D>();
@@ -108,26 +105,13 @@ public class NanoBotController : MonoBehaviour
     public void Fire_Weapon()
     {
         //this.weaponStrategy.Fire();
-        this.fireState.Fire(this);
-    }
-
-    public void Cooldown()
-    {
-        this.fireState = new NoFire_State();
-        StartCoroutine(ReactivateFireAbility());
+        this.weaponStrategy.Fire(this);
     }
 
     //Get Functions
     public Vector3 GetMissilePosition()
     {
         return this.MissileTransform.position;
-    }
-
-    //CoRoutines
-    IEnumerator ReactivateFireAbility()
-    {
-        yield return new WaitForSeconds(CooldownTime);
-        this.fireState = new CanFire_State(this.weaponStrategy);
     }
 
 
@@ -138,10 +122,10 @@ public class NanoBotController : MonoBehaviour
     //Strategy
     private ControllerStrategy controllerStrategy;
     private WeaponStrategy weaponStrategy;
-    private FireState fireState;
 
     //Prefabs
     public GameObject ProjectilePrefab;
+    public GameObject LaserPrefab;
 
     //GO Components
     private Rigidbody2D RB;
@@ -163,7 +147,7 @@ public class NanoBotController : MonoBehaviour
     [SerializeField]
     private float AngularDrag;
 
-    //Weapon
+    //Weapon Variable
     [SerializeField]
     private float CooldownTime;
 

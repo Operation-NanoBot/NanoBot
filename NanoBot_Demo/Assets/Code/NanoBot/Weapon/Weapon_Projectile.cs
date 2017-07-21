@@ -8,17 +8,19 @@ public class Weapon_Projectile : WeaponStrategy
     //Functions//
 
     //Constructor
-    public Weapon_Projectile()
+    public Weapon_Projectile(float inTime)
         :base()
     {
-        
+        //Set Fire State
+        this.fireState = new CanFire_State();
+
+        this.CooldownTime = inTime;
     }
 
     //Overridden Functions
     public override void Fire(NanoBotController NC)
     {
-        this.CreateProjectile(NC);
-        NC.Cooldown();
+        this.fireState.Fire(NC, this);
     }
 
     public void CreateProjectile(NanoBotController NC)
@@ -26,10 +28,20 @@ public class Weapon_Projectile : WeaponStrategy
         GameObject GO = GameObject.Instantiate(NC.ProjectilePrefab, NC.GetMissilePosition(), Quaternion.identity);
         GO.GetComponent<ProjectileController>().RotateProjectile(NC.transform.eulerAngles.z);
         GO.GetComponent<ProjectileController>().DestructTimerStart();
+
+        //Change Fire State
+        this.fireState = new NoFire_State();
+        NC.StartCoroutine(Cooldown());
     }
 
-    
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(CooldownTime);
+        this.fireState = new CanFire_State();
+    }
 
     //Variables//
-    //private FireState fireState;
+    private FireState fireState;
+    [SerializeField]
+    private float CooldownTime;
 }

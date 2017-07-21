@@ -9,12 +9,5 @@ public abstract class FireState
 
     }
 
-    public FireState(WeaponStrategy WS)
-    {
-        this.weaponStrategy = WS;
-    }
-
-    public abstract void Fire(NanoBotController NC);
-
-    protected WeaponStrategy weaponStrategy;
+    public abstract void Fire(NanoBotController NC, Weapon_Projectile WP);
 }

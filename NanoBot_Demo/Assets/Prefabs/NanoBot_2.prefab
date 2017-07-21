@@ -149,12 +149,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 1029415462587484, guid: cc6f86fac46bf8d4895d4e656d535523,
     type: 2}
+  LaserPrefab: {fileID: 1072367491873990, guid: 2528078cbd09443419b57da1e1593523,
+    type: 2}
   Thrust_Forward: 7
   Thrust_Backward: 5
   Rotation_Thrust: 2
   LinearDrag: 0.5
   AngularDrag: 0.5
-  CooldownTime: 0
+  CooldownTime: 0.5
 --- !u!212 &212000534350996702
 SpriteRenderer:
   m_ObjectHideFlags: 1
