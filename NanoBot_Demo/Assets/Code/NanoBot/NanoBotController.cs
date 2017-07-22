@@ -15,6 +15,7 @@ public class NanoBotController : MonoBehaviour
         this.controllerStrategy = new KeyboardController();
 
         //Set up Weapons
+        this.firingState = new Firing_Off_State();
         this.weaponStrategy = new Weapon_Projectile(this.CooldownTime);
         //this.weaponStrategy = new Weapon_Laser();
 
@@ -38,6 +39,11 @@ public class NanoBotController : MonoBehaviour
         this.controllerStrategy.Update(this);
         //Debug.Log("Velocity: " + this.RB.velocity);
 	}
+
+    private void Update()
+    {
+        this.firingState.Update(this);
+    }
 
     //Movement Functions
     //public void MoveForward()
@@ -104,7 +110,6 @@ public class NanoBotController : MonoBehaviour
     //Weapon Functions
     public void Fire_Weapon()
     {
-        //this.weaponStrategy.Fire();
         this.weaponStrategy.Fire(this);
     }
 
@@ -122,6 +127,7 @@ public class NanoBotController : MonoBehaviour
     //Strategy
     private ControllerStrategy controllerStrategy;
     private WeaponStrategy weaponStrategy;
+    private FiringState firingState;
 
     //Prefabs
     public GameObject ProjectilePrefab;
