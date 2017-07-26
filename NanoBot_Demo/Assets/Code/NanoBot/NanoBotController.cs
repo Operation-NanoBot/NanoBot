@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NanoBotController : MonoBehaviour
 {
@@ -9,9 +8,9 @@ public class NanoBotController : MonoBehaviour
     //GO Functions
 
 
-    void Start ()
+    void Awake ()
     {
-        //Set up Keyboard for now
+        //Set up Controller Type
         this.controllerStrategy = new KeyboardController();
 
         //Set up Weapons
@@ -20,6 +19,7 @@ public class NanoBotController : MonoBehaviour
         //this.weaponStrategy = new Weapon_Laser();
 
         //Grab Necessary Components
+        this.SR = this.GetComponent<SpriteRenderer>();
         this.RB = this.GetComponent<Rigidbody2D>();
         this.ThrustTransform = this.GetComponentsInChildren<Transform>()[1];
         this.MissileTransform = this.GetComponentsInChildren<Transform>()[2];
@@ -32,85 +32,104 @@ public class NanoBotController : MonoBehaviour
         this.RB.drag = this.LinearDrag;
         this.RB.angularDrag = this.AngularDrag;
         this.RB.gravityScale = 0.0f;
-	}
-	
-	void FixedUpdate ()
+
+        //Set up Initial View State
+        this.TopDown();
+    }
+
+    void FixedUpdate ()
     {
-        this.controllerStrategy.Update(this);
+        //this.controllerStrategy.Update(this);
+        this.viewState.ViewUpdate(this);
         //Debug.Log("Velocity: " + this.RB.velocity);
 	}
 
     private void Update()
     {
         this.firingState.Update(this);
+        //this.viewState.ViewUpdate(this);
     }
 
-    //Movement Functions
-    //public void MoveForward()
-    //{
-    //    this.RB.AddForce(this.transform.up * this.Thrust_Forward);
-    //}
+    //View State Functions
+    public void TopDown()
+    {
+        this.viewState = new TopDown_State(this.controllerStrategy, Resources.Load<Sprite>("Images/Sprite/NanoBot"));
+        this.ChangeSprite();
+    }
 
-    public void MoveForward2()
+    public void SideView()
+    {
+        this.viewState = new SideScroll_State(this.controllerStrategy, Resources.Load<Sprite>("Images/Sprite/NanoBot_Side"));
+        this.ChangeSprite();
+        this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -90.0f);
+    }
+
+    //TopDown Movement
+    public void TD_MoveForward()
     {
         this.RB.AddForceAtPosition(this.transform.up * this.Thrust_Forward, this.ThrustTransform.position);
     }
 
-    //public void MoveForward3()
-    //{
-    //    this.RB.AddForceAtPosition(this.Thruster.transform.up * this.Thrust_Forward, this.Thruster.transform.position);
-    //}
-
-    //public void MoveForward4()
-    //{
-    //    this.RB.AddForceAtPosition(this.transform.up * (this.Thrust_Forward / 2.0f), this.Left_Thrust.position);
-    //    this.RB.AddForceAtPosition(this.transform.up * (this.Thrust_Forward / 2.0f), this.Right_Thrust.position);
-    //}
-
-    public void MoveBackward()
+    public void TD_MoveBackward()
     {
         this.RB.AddForce(this.transform.up * -this.Thrust_Backward);
     }
 
-    //public void RotateCW()
-    //{
-    //    this.RB.AddTorque(-this.Rotation_Thrust);
-    //}
-
-    public void RotateCW2()
+    public void TD_RotateCW()
     {
         this.RB.AddForceAtPosition(this.transform.right * -this.Rotation_Thrust, this.ThrustTransform.position);
     }
 
-    //public void RotateCW3()
-    //{
-    //    this.Thruster.Rotate(new Vector3(0.0f, 0.0f, this.ThrustTransform.position.y), -this.Rotation_Thrust);
-    //}
-
-    //public void RotateCW4()
-    //{
-    //    this.RB.AddForceAtPosition(this.transform.up * this.Thrust_Forward / 2.0f, this.Left_Thrust.position);
-    //}
-
-    //public void RotateCCW()
-    //{
-    //    this.RB.AddTorque(this.Rotation_Thrust);
-    //}
-
-    public void RotateCCW2()
+    public void TD_RotateCCW()
     {
         this.RB.AddForceAtPosition(this.transform.right * this.Rotation_Thrust, this.ThrustTransform.position);
     }
 
-    //public void RotateCCW4()
-    //{
-    //    this.RB.AddForceAtPosition(this.transform.up * this.Thrust_Forward / 2.0f, this.Right_Thrust.position);
-    //}
+    public void TD_Dive()
+    {
+        GameManager.SideScroll();
+    }
+
+    //SideView Movement
+    public void SV_MoveForward()
+    {
+        this.RB.AddForceAtPosition(this.transform.up * this.Thrust_Forward, this.ThrustTransform.position);
+    }
+
+    public void SV_MoveBackward()
+    {
+        this.RB.AddForce(this.transform.up * -this.Thrust_Backward);
+    }
+
+    public void SV_RotateCW()
+    {
+        this.RB.AddForceAtPosition(this.transform.right * -this.Rotation_Thrust, this.ThrustTransform.position);
+    }
+
+    public void SV_RotateCCW()
+    {
+        this.RB.AddForceAtPosition(this.transform.right * this.Rotation_Thrust, this.ThrustTransform.position);
+    }
+
+    public void SV_Ascend()
+    {
+        GameManager.TopDown();
+    }
 
     //Weapon Functions
     public void Fire_Weapon()
     {
         this.weaponStrategy.Fire(this);
+    }
+
+    public void Firing()
+    {
+        this.firingState = new Firing_On_State();
+    }
+
+    public void NotFiring()
+    {
+        this.firingState = new Firing_Off_State();
     }
 
     //Get Functions
@@ -119,12 +138,21 @@ public class NanoBotController : MonoBehaviour
         return this.MissileTransform.position;
     }
 
+    //Private Functions
+
+    //Change Sprite
+    private void ChangeSprite()
+    {
+        this.SR.sprite = this.viewState.GetSprite();
+    }
+
 
     //Variables//
 
     //Private//
 
     //Strategy
+    private ViewState viewState;
     private ControllerStrategy controllerStrategy;
     private WeaponStrategy weaponStrategy;
     private FiringState firingState;
@@ -134,12 +162,10 @@ public class NanoBotController : MonoBehaviour
     public GameObject LaserPrefab;
 
     //GO Components
+    private SpriteRenderer SR;
     private Rigidbody2D RB;
     private Transform ThrustTransform;
     private Transform MissileTransform;
-    //private Transform Left_Thrust;
-    //private Transform Right_Thrust;
-    //private Transform Thruster;
 
     //Physics
     [SerializeField]

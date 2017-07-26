@@ -13,24 +13,55 @@ public class KeyboardController : ControllerStrategy
     }
 
     //Overidden Functions
-    public override void Update(NanoBotController pNB)
+    public override void TopDown_Update(NanoBotController pNB)
     {
         if(Input.GetKey(KeyCode.W))
         {
-            pNB.MoveForward2();
+            pNB.TD_MoveForward();
         }
         else if(Input.GetKey(KeyCode.S))
         {
-            pNB.MoveBackward();
+            pNB.TD_MoveBackward();
         }
 
         if(Input.GetKey(KeyCode.D))
         {
-            pNB.RotateCW2();
+            pNB.TD_RotateCW();
         }
         else if(Input.GetKey(KeyCode.A))
         {
-            pNB.RotateCCW2();
+            pNB.TD_RotateCCW();
+        }
+
+        if(Input.GetKeyUp(KeyCode.Q))
+        {
+            pNB.TD_Dive();
+        }
+    }
+
+    public override void SideView_Update(NanoBotController pNB)
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            pNB.SV_MoveForward();
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            pNB.SV_MoveBackward();
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            pNB.SV_RotateCW();
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            pNB.SV_RotateCCW();
+        }
+
+        if(Input.GetKeyUp(KeyCode.Q))
+        {
+            pNB.SV_Ascend();
         }
 
         if(Input.GetKey(KeyCode.Space))

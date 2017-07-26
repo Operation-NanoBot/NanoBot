@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/_Scenes/Company_Splash_Screen.unity
+  - enabled: 0
+    path: 
     guid: 7e8655c7d1fe7694184a216937327d66
   - enabled: 1
     path: Assets/_Scenes/Movement_Test_Scene.unity
     guid: 92d77858db3b3724fbfdd416cf13a8e3
+  - enabled: 1
+    path: Assets/_Scenes/Overworld_Scene.unity
+    guid: ff555e33ddc5e1d4abd6b30ef64e4560
+  - enabled: 1
+    path: Assets/_Scenes/Side_Scrolling_Scene.unity
+    guid: fd6d9d126cdd7714e9e36255a253c6c7

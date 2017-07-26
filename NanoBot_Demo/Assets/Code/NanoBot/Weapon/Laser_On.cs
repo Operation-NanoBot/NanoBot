@@ -12,10 +12,6 @@ public class Laser_On : Laser_State
 
     public override void FireLaser(NanoBotController NC, Weapon_Laser WL)
     {
-        Debug.Log("Hello!");
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-            WL.TurnLaserOff();
-        }
+        
     }
 }

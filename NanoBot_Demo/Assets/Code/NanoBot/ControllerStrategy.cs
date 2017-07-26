@@ -11,6 +11,7 @@ public abstract class ControllerStrategy
     }
 
     //Abstract Functions
-    public abstract void Update(NanoBotController pNB);
+    public abstract void TopDown_Update(NanoBotController pNB);
+    public abstract void SideView_Update(NanoBotController pNB);
 	
 }
