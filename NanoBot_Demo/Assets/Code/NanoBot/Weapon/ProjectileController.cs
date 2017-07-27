@@ -15,8 +15,6 @@ public class ProjectileController : MonoBehaviour
         //Set Physics Data
         this.RB.gravityScale = 0.0f;
 	}
-	
-	// Update is called once per frame
 	void FixedUpdate ()
     {
         if (this.RB.velocity.sqrMagnitude < (MaxVelocity * MaxVelocity))
@@ -25,6 +23,12 @@ public class ProjectileController : MonoBehaviour
             this.RB.MovePosition(this.transform.position + (this.transform.up * ProjectileSpeed));
         }
         //Debug.Log("Velocity: " + this.RB.velocity);
+    }
+
+    //Collision
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(this.gameObject);
     }
 
     //Rotation

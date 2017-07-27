@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4380429443443016}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rocket_Position
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 50777062330351160}
   - component: {fileID: 70492056960196716}
   - component: {fileID: 114423974473284978}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NanoBot_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4052399196734766}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Missile_Position
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}

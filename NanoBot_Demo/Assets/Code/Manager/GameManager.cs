@@ -23,14 +23,24 @@ public class GameManager : MonoBehaviour
         //So this permeates through all Scenes
         DontDestroyOnLoad(gameObject);
 
-        //Create NanoBot Player
-        this.NanoBot_Player = Instantiate(NanoBot_Player, this.transform);
-        this.NB = this.NanoBot_Player.GetComponent<NanoBotController>();
+        //Grab NanoBot Player
+        this.NC = GetComponentInChildren<NanoBotController>();
+        this.NanoBot_Player = this.NC.gameObject;
+        this.NC.InitializePlayer();
 
-        //Create Camera and assign to follow NanoBot
+        //Grab Camera and assign to follow NanoBot
         this.MainCam = GetComponentInChildren<Camera>();
         this.cameraFollow = this.MainCam.GetComponent<CameraFollow>();
         this.cameraFollow.AssignTarget(this.NanoBot_Player.transform);
+
+        if(isOverworld)
+        {
+            this.NC.TopDown();
+        }
+        else
+        {
+            this.NC.SideView();
+        }
     }
 
     //Private Functions//
@@ -39,13 +49,18 @@ public class GameManager : MonoBehaviour
     private void privSideScroll()
     {
         SceneManager.LoadScene(2);
-        this.NB.SideView();
+        this.NC.SideView();
     }
 
     private void privTopDown()
     {
         SceneManager.LoadScene(1);
-        this.NB.TopDown();
+        this.NC.TopDown();
+    }
+
+    private GameObject privGetPlayer()
+    {
+        return this.NanoBot_Player;
     }
 
     //Public Static Functions
@@ -59,18 +74,27 @@ public class GameManager : MonoBehaviour
         Instance.privTopDown();
     }
 
+    public static GameObject GetPlayer()
+    {
+        return Instance.privGetPlayer();
+    }
+
+
     //Variables//
 
     //Instance
     private static GameManager Instance = null;
 
     //GameObjects
-    public GameObject NanoBot_Player;
+    private GameObject NanoBot_Player;
 
     //NanoBot Controller
-    private NanoBotController NB;
+    private NanoBotController NC;
 
     //Camera
     private Camera MainCam;
     private CameraFollow cameraFollow;
+
+    //Overworld vs SideScroll
+    public bool isOverworld = true;
 }

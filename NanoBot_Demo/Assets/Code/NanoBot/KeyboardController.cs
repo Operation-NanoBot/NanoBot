@@ -59,7 +59,7 @@ public class KeyboardController : ControllerStrategy
             pNB.SV_RotateCCW();
         }
 
-        if(Input.GetKeyUp(KeyCode.Q))
+        if(Input.GetKeyUp(KeyCode.E))
         {
             pNB.SV_Ascend();
         }

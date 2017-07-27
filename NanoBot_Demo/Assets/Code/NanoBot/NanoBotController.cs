@@ -8,7 +8,50 @@ public class NanoBotController : MonoBehaviour
     //GO Functions
 
 
-    void Awake ()
+    //void Awake ()
+    //{
+    //    //Set up Controller Type
+    //    this.controllerStrategy = new KeyboardController();
+
+    //    //Set up Weapons
+    //    this.firingState = new Firing_Off_State();
+    //    this.weaponStrategy = new Weapon_Projectile(this.CooldownTime);
+    //    //this.weaponStrategy = new Weapon_Laser();
+
+    //    //Grab Necessary Components
+    //    this.SR = this.GetComponent<SpriteRenderer>();
+    //    this.RB = this.GetComponent<Rigidbody2D>();
+    //    this.ThrustTransform = this.GetComponentsInChildren<Transform>()[1];
+    //    this.MissileTransform = this.GetComponentsInChildren<Transform>()[2];
+    //    //this.Thruster = this.GetComponentsInChildren<Transform>()[2];
+    //    //this.Left_Thrust = this.GetComponentsInChildren<Transform>()[2];
+    //    //this.Right_Thrust = this.GetComponentsInChildren<Transform>()[3];
+
+    //    //Set Physics Data
+    //    //this.RB.centerOfMass = new Vector2(0.0f, 1.0f);
+    //    this.RB.drag = this.LinearDrag;
+    //    this.RB.angularDrag = this.AngularDrag;
+    //    this.RB.gravityScale = 0.0f;
+
+    //    //Set up Initial View State
+    //    //this.TopDown();
+    //}
+
+    void FixedUpdate ()
+    {
+        //this.controllerStrategy.Update(this);
+        this.viewState.ViewUpdate(this);
+        //Debug.Log("Velocity: " + this.RB.velocity);
+	}
+
+    private void Update()
+    {
+        this.firingState.Update(this);
+        //this.viewState.ViewUpdate(this);
+    }
+
+    //Initialization
+    public void InitializePlayer()
     {
         //Set up Controller Type
         this.controllerStrategy = new KeyboardController();
@@ -32,22 +75,6 @@ public class NanoBotController : MonoBehaviour
         this.RB.drag = this.LinearDrag;
         this.RB.angularDrag = this.AngularDrag;
         this.RB.gravityScale = 0.0f;
-
-        //Set up Initial View State
-        this.TopDown();
-    }
-
-    void FixedUpdate ()
-    {
-        //this.controllerStrategy.Update(this);
-        this.viewState.ViewUpdate(this);
-        //Debug.Log("Velocity: " + this.RB.velocity);
-	}
-
-    private void Update()
-    {
-        this.firingState.Update(this);
-        //this.viewState.ViewUpdate(this);
     }
 
     //View State Functions
