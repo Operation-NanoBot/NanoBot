@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TempTextController : MonoBehaviour
 {
+    //Testing
 
 	// Use this for initialization
 	void Start ()
