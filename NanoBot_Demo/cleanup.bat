@@ -15,6 +15,12 @@ REM cleanup root director
     del /F *.csproj
     del /F *.sln
     del /F *.db
+
+REM For Mac Cleanup
+   
+  del /s /q /f /a .DS_STORE
+
+
   
 REM Delete All Folders in Library
 
@@ -27,3 +33,5 @@ REM For  /D  %%G in (*) do (
 REM For %%G in (*) do (
   REM IF "%%G" NEQ "AssetServerCacheV3"  del /F %%G
 REM)
+
+REM pause
