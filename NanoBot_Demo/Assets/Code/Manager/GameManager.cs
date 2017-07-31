@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
         //So this permeates through all Scenes
         DontDestroyOnLoad(gameObject);
 
+        //Create Overworld Manager
+        this.overworldManager = new OverworldManager(this.GetComponentsInChildren<Overworld_Location>());
+
         //Grab NanoBot Player
         this.NC = GetComponentInChildren<NanoBotController>();
         this.NanoBot_Player = this.NC.gameObject;
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour
 
         if(isOverworld)
         {
-            this.NC.TopDown();
+            this.NC.TopDown(Vector3.zero);
         }
         else
         {
@@ -48,14 +51,14 @@ public class GameManager : MonoBehaviour
     //Functions to be Public
     private void privSideScroll()
     {
-        SceneManager.LoadScene(2);
+        this.overworldManager.SwitchToSideScroll(this.NC.transform.position);
         this.NC.SideView();
     }
 
     private void privTopDown()
     {
         SceneManager.LoadScene(1);
-        this.NC.TopDown();
+        this.NC.TopDown(this.overworldManager.SwitchToOverworld());
     }
 
     private GameObject privGetPlayer()
@@ -84,6 +87,9 @@ public class GameManager : MonoBehaviour
 
     //Instance
     private static GameManager Instance = null;
+
+    //Other Managers
+    private OverworldManager overworldManager;
 
     //GameObjects
     private GameObject NanoBot_Player;

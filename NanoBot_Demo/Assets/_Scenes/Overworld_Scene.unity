@@ -156,8 +156,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 143a06124e8f3d046a33496dae76da84, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.447}
+  m_Sprite: {fileID: 21300000, guid: 0d45f3d462b11431f9bb332f20474d55, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -174,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 783204484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -380,12 +380,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 212560533771177434, guid: 501a37e2656bbb149941ec66580268ac,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6987f43384273ab46b567c14f20d26be,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 501a37e2656bbb149941ec66580268ac, type: 2}
   m_IsPrefabParent: 0

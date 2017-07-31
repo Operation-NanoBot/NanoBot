@@ -78,12 +78,12 @@ public class NanoBotController : MonoBehaviour
     }
 
     //View State Functions
-    public void TopDown()
+    public void TopDown(Vector3 inPos)
     {
         this.viewState = new TopDown_State(this.controllerStrategy, Resources.Load<Sprite>("Images/Sprite/NanoBot"));
         this.ChangeSprite();
         this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-        this.transform.position = Vector3.zero;
+        this.transform.position = inPos;
     }
 
     public void SideView()
