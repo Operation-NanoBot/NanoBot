@@ -1,0 +1,17 @@
+8/4/17:
+-Worked in "Side_Scrolling_Scene".
+-Scaled down the player object, water bottle, and area aggressor by half.
+-Camera set to 1024x768.
+-Background image size is 7680x4800.
+-Need a standardized sprite size for player object to determine size of screen resolution, 
+pathways, platforms, and overall spread of the levels.
+-Starting a list of environmental assets for Atiya:
+	Edge borders (Top, side, bottom) to cut off player camera from catching edge of the background.
+	Long, medium, short versions of each.
+-Added sorting layers to be used in sprite rendering.
+-Note: Player object passes through anything in the default layer. Be sure to apply platform layers
+to environment objects.
+-Arranged environment objects into a rough level layout, which will change with each pass as newer
+assets get added. Will continuously be a WIP.
+-Added a DUG placeholder sprite, also needs a standard sprite size.
+-Note: Nurdles spawn behind the background. Possible sorting layer issue or culling mask with main camera
