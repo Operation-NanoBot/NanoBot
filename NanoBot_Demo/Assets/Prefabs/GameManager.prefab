@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 114620828640538152}
   m_Layer: 8
   m_Name: NanoBot_2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -326,7 +326,7 @@ Camera:
   m_GameObject: {fileID: 1806255683403406}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.4496107, g: 0.5578503, b: 0.72794116, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -338,7 +338,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d447319b0ee39747b196e71c969c99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOverworld: 1
+  isOverworld: 0
 --- !u!114 &114363911596241658
 MonoBehaviour:
   m_ObjectHideFlags: 1
