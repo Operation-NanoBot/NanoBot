@@ -9,6 +9,6 @@ public abstract class WeaponStrategy
 
     }
 
-    public abstract void Fire(NanoBotController NC);
+    public abstract void Fire(NbSidescrollController NC);
 	
 }

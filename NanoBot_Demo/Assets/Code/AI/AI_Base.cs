@@ -7,7 +7,7 @@ public class AI_Base : MonoBehaviour
     //GO Functions
     protected void Start()
     {
-        this.Target = GameManager.GetPlayer().transform;
+        //this.Target = GameManager.GetPlayer().transform;
     }
 
     //Collisions

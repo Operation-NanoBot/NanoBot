@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public struct NanobotData
+{
+    public Vector3 Overworld_Dive_Position;
+    public float Overworld_Dive_Rotation;
+}
+
 public class GameManager : MonoBehaviour
 {
     //Functions//
@@ -23,63 +29,63 @@ public class GameManager : MonoBehaviour
         //So this permeates through all Scenes
         DontDestroyOnLoad(gameObject);
 
-        //Create Overworld Manager
-        this.overworldManager = new OverworldManager(this.GetComponentsInChildren<Overworld_Location>());
-
-        //Grab NanoBot Player
-        this.NC = GetComponentInChildren<NanoBotController>();
-        this.NanoBot_Player = this.NC.gameObject;
-        this.NC.InitializePlayer();
-
-        //Grab Camera and assign to follow NanoBot
-        this.MainCam = GetComponentInChildren<Camera>();
-        this.cameraFollow = this.MainCam.GetComponent<CameraFollow>();
-        this.cameraFollow.AssignTarget(this.NanoBot_Player.transform);
-
-        if(isOverworld)
-        {
-            this.NC.TopDown(Vector3.zero);
-        }
-        else
-        {
-            this.NC.SideView();
-        }
+        //Set Starting Position for Nanobot Data
+        this.nanobotData.Overworld_Dive_Position = this.OV_NB_StartingPos;
+        this.nanobotData.Overworld_Dive_Rotation = this.OV_NB_StartingRot;
     }
 
     //Private Functions//
 
     //Functions to be Public
-    private void privSideScroll()
+
+        //Level Change
+    private void privLoadLevel(int index)
     {
-        this.overworldManager.SwitchToSideScroll(this.NC.transform.position);
-        this.NC.SideView();
+        SceneManager.LoadSceneAsync(index);
     }
 
-    private void privTopDown()
+    //Grabbing Current Player
+    private NanobotData privGetData()
     {
-        SceneManager.LoadScene(1);
-        this.NC.TopDown(this.overworldManager.SwitchToOverworld());
+        return this.nanobotData;
     }
 
-    private GameObject privGetPlayer()
+
+    //Diving/Ascending
+    private void privDive(NbTopdownController NB, int levelIndex)
     {
-        return this.NanoBot_Player;
+        //Save Data
+        this.nanobotData.Overworld_Dive_Position = NB.transform.position;
+        this.nanobotData.Overworld_Dive_Rotation = NB.transform.rotation.eulerAngles.z;
+
+        //Load Level
+        this.privLoadLevel(levelIndex);
+    }
+
+    private void privAscend(NbSidescrollController NB)
+    {
+        this.privLoadLevel(2);
     }
 
     //Public Static Functions
-    public static void SideScroll()
+    public static void LoadLevel(int index)
     {
-        Instance.privSideScroll();
+        Instance.privLoadLevel(index);
     }
 
-    public static void TopDown()
+    public static NanobotData GetData()
     {
-        Instance.privTopDown();
+        return Instance.privGetData();
     }
 
-    public static GameObject GetPlayer()
+    public static void Dive(NbTopdownController NB, int index)
     {
-        return Instance.privGetPlayer();
+        Instance.privDive(NB, index);
+    }
+
+    public static void Ascend(NbSidescrollController NB)
+    {
+        Instance.privAscend(NB);
     }
 
 
@@ -88,19 +94,10 @@ public class GameManager : MonoBehaviour
     //Instance
     private static GameManager Instance = null;
 
-    //Other Managers
-    private OverworldManager overworldManager;
+    //Nanobot Data
+    private NanobotData nanobotData;
 
-    //GameObjects
-    private GameObject NanoBot_Player;
-
-    //NanoBot Controller
-    private NanoBotController NC;
-
-    //Camera
-    private Camera MainCam;
-    private CameraFollow cameraFollow;
-
-    //Overworld vs SideScroll
-    public bool isOverworld = true;
+    //Starting Position and Rotation
+    public Vector3 OV_NB_StartingPos = new Vector3(0.0f, 0.0f, 0.0f);
+    public float OV_NB_StartingRot = 0.0f;
 }
