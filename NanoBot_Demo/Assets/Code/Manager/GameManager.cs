@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
 
     private void privAscend(NbSidescrollController NB)
     {
+        FactoryManager.EndLevel();
         this.privLoadLevel(2);
     }
 

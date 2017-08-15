@@ -14,12 +14,12 @@ public class NurdlesFactory
 
     }
 
-    public void GetNurdle(Vector3 inPos)
+    public void GetNurdle(Transform parent, Vector3 inPos)
     {
         if (this.InactiveNurdleStack.Count == 0)
         {
             //Create New Instance
-            this.NC = GameObject.Instantiate<GameObject>(this.NurdlesPrefab).GetComponent<NurdlesController>();
+            this.NC = GameObject.Instantiate<GameObject>(this.NurdlesPrefab, parent).GetComponent<NurdlesController>();
         }
         else
         {
@@ -47,6 +47,20 @@ public class NurdlesFactory
 
         //Add to Inactive Stack
         this.InactiveNurdleStack.Push(inNC);
+    }
+
+    public void DeactivateAll()
+    {
+        //Deactivate all active Items and move them to inactive list
+        int NumItems = this.ActiveNurdleList.Count;
+        for (int index = 0; index < NumItems; ++index)
+        {
+            this.ActiveNurdleList[index].gameObject.SetActive(false);
+            this.InactiveNurdleStack.Push(this.ActiveNurdleList[index]);
+        }
+
+        //Clear Active List
+        this.ActiveNurdleList.RemoveRange(0, NumItems);
     }
 
     //Variables//

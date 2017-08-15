@@ -71,6 +71,20 @@ public class GarbageFactory
         this.InactiveGarbageStack.Push(inGB);
     }
 
+    public void DeactivateAll()
+    {
+        //Deactivate all active Items and move them to inactive list
+        int NumItems = this.ActiveGarbageList.Count;
+        for (int index = 0; index < NumItems; ++index)
+        {
+            this.ActiveGarbageList[index].gameObject.SetActive(false);
+            this.InactiveGarbageStack.Push(this.ActiveGarbageList[index]);
+        }
+
+        //Clear Active List
+        this.ActiveGarbageList.RemoveRange(0, NumItems);
+    }
+
     //Variables//
 
     //Stacks

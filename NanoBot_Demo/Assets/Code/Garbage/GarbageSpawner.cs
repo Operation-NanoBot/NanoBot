@@ -29,11 +29,11 @@ public class GarbageSpawner : MonoBehaviour
 
         if(rand == 0)
         {
-            FactoryManager.CreateDestructibleGarbage(this.transform, this.transform.position, 0.0f);
+            FactoryManager.CreateDestructibleGarbage(this.transform.position, 0.0f);
         }
         else
         {
-            FactoryManager.CreateIndestructibleGarbage(this.transform, this.transform.position, 0.0f);
+            FactoryManager.CreateIndestructibleGarbage(this.transform.position, 0.0f);
         }
     }
 

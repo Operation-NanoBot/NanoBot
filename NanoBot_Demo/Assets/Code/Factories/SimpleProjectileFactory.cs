@@ -14,12 +14,12 @@ public class SimpleProjectileFactory
         
     }
 
-    public void GetProjectile(Vector3 inPos, float inRot)
+    public void GetProjectile(Transform parent, Vector3 inPos, float inRot)
     {
         if(this.InactiveProjectileStack.Count == 0)
         {
             //Create New Instance
-            this.PC = GameObject.Instantiate<GameObject>(this.SimpleProjectilePrefab).GetComponent<ProjectileController>();
+            this.PC = GameObject.Instantiate<GameObject>(this.SimpleProjectilePrefab, parent).GetComponent<ProjectileController>();
         }
         else
         {
@@ -47,6 +47,20 @@ public class SimpleProjectileFactory
 
         //Add to Inactive Stack
         this.InactiveProjectileStack.Push(inPC);
+    }
+
+    public void DeactivateAll()
+    {
+        //Deactivate all active Items and move them to inactive list
+        int NumItems = this.ActiveProjectileList.Count;
+        for(int index = 0; index < NumItems; ++index)
+        {
+            this.ActiveProjectileList[index].gameObject.SetActive(false);
+            this.InactiveProjectileStack.Push(this.ActiveProjectileList[index]);
+        }
+
+        //Clear Active List
+        this.ActiveProjectileList.RemoveRange(0, NumItems);
     }
 
     //Variables//

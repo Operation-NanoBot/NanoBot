@@ -19,6 +19,12 @@ public class FactoryManager : MonoBehaviour
         //So this permeates through all Scenes
         DontDestroyOnLoad(gameObject);
 
+        //Grab Holders
+        for(int index = 0; index < NUM_HOLDERS; ++index)
+        {
+            this.HolderArr[index] = GetComponentsInChildren<Transform>()[index + 1];
+        }
+
         //Create Factories
         this.simpleProjectileFactory = new SimpleProjectileFactory(this.simpleProjectilePrefab);
         this.garbageFactory = new GarbageFactory(this.destructibleGarbagePrefab, this.indestructibleGarbagePrefab);
@@ -31,7 +37,7 @@ public class FactoryManager : MonoBehaviour
     //Simple Projectile
     private void privCreateSimpleProjectile(Vector3 inPos, float inRot)
     {
-        this.simpleProjectileFactory.GetProjectile(inPos, inRot);
+        this.simpleProjectileFactory.GetProjectile(this.HolderArr[0], inPos, inRot);
     }
 
     private void privReturnSimpleProjectile(ProjectileController inPC)
@@ -40,14 +46,14 @@ public class FactoryManager : MonoBehaviour
     }
 
     //Garbage
-    private void privCreateDestructibleGarbage(Transform inParent, Vector3 inPos, float inRot)
+    private void privCreateDestructibleGarbage(Vector3 inPos, float inRot)
     {
-        this.garbageFactory.GetDestructibleGarbage(inParent, inPos, inRot);
+        this.garbageFactory.GetDestructibleGarbage(this.HolderArr[1], inPos, inRot);
     }
 
-    private void privCreateIndestructibleGarbage(Transform inParent, Vector3 inPos, float inRot)
+    private void privCreateIndestructibleGarbage(Vector3 inPos, float inRot)
     {
-        this.garbageFactory.GetIndestructibleGarbage(inParent, inPos, inRot);
+        this.garbageFactory.GetIndestructibleGarbage(this.HolderArr[1], inPos, inRot);
     }
 
     private void privReturnGarbage(GarbageBase inGB)
@@ -58,12 +64,20 @@ public class FactoryManager : MonoBehaviour
     //Nurdle
     private void privCreateNurdle(Vector3 inPos)
     {
-        this.nurdlesFactory.GetNurdle(inPos);
+        this.nurdlesFactory.GetNurdle(this.HolderArr[2], inPos);
     }
 
     private void privReturnNurdle(NurdlesController NC)
     {
         this.nurdlesFactory.Return(NC);
+    }
+
+    //End Level
+    private void privEndLevel()
+    {
+        this.simpleProjectileFactory.DeactivateAll();
+        this.garbageFactory.DeactivateAll();
+        this.nurdlesFactory.DeactivateAll();
     }
 
     //Static Public Functions
@@ -79,14 +93,14 @@ public class FactoryManager : MonoBehaviour
     }
 
     //Garbage
-    public static void CreateDestructibleGarbage(Transform inParent, Vector3 inPos, float inRot)
+    public static void CreateDestructibleGarbage(Vector3 inPos, float inRot)
     {
-        Instance.privCreateDestructibleGarbage(inParent, inPos, inRot);
+        Instance.privCreateDestructibleGarbage(inPos, inRot);
     }
 
-    public static void CreateIndestructibleGarbage(Transform inParent, Vector3 inPos, float inRot)
+    public static void CreateIndestructibleGarbage(Vector3 inPos, float inRot)
     {
-        Instance.privCreateIndestructibleGarbage(inParent, inPos, inRot);
+        Instance.privCreateIndestructibleGarbage(inPos, inRot);
     }
 
     public static void ReturnGarbage(GarbageBase inGB)
@@ -105,10 +119,19 @@ public class FactoryManager : MonoBehaviour
         Instance.privReturnNurdle(NC);
     }
 
+    public static void EndLevel()
+    {
+        Instance.privEndLevel();
+    }
+
     //Variables//
 
     //Instance
     private static FactoryManager Instance = null;
+
+    //Holder
+    private const int NUM_HOLDERS = 3;
+    private Transform[] HolderArr = new Transform[NUM_HOLDERS];
 
     //Prefabs
     public GameObject simpleProjectilePrefab;
