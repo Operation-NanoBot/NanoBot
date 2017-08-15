@@ -5,9 +5,9 @@ public class AI_Base : MonoBehaviour
     //Functions//
 
     //GO Functions
-    protected void Start()
+    protected void Initialize()
     {
-        this.Target = GameManager.GetPlayer().transform;
+        this.Target = FindObjectOfType<NbSidescrollController>().gameObject.transform;
     }
 
     //Collisions

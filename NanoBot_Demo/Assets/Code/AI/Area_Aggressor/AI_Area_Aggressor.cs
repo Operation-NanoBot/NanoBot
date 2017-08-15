@@ -7,6 +7,10 @@ public class AI_Area_Aggressor : AI_Base
     //GO Functions
     private void Awake()
     {
+        //Initialize
+        base.Initialize();
+
+
         //Create States
         this.detectState = new AreaAggression_DetectState();
         this.chaseState = new AreaAggression_ChaseState();

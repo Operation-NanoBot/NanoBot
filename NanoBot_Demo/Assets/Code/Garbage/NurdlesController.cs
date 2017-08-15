@@ -15,16 +15,24 @@ public class NurdlesController : MonoBehaviour
     //Collisions
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(this.gameObject);
+        this.DestroyNurdle();
     }
 
     //Public Functions
 
     //Movement Functions
-    public void InitializeNurdle()
+    public void InitializeNurdle(Vector3 inPos)
     {
+        this.transform.position = inPos;
+
         this.RB.AddForce(Random.onUnitSphere * Random.Range(MinForce, MaxForce));
         this.RB.AddTorque(Random.Range(MinTorque, MaxTorque));
+    }
+
+    //Private
+    private void DestroyNurdle()
+    {
+        FactoryManager.ReturnNurdle(this);
     }
 
     //Variables//

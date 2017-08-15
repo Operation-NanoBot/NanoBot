@@ -1,38 +1,24 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GarbageBase : MonoBehaviour
+public abstract class GarbageBase : MonoBehaviour
 {
     //Functions//
 
-    //Collisions
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void AwakeInitialize()
     {
-        //Debug.Log("COLLISION");
-        if(collision.gameObject.GetComponent<ProjectileController>() != null)
-        {
-            this.SpawnNurdles();
-            Destroy(this.gameObject);
-        }
+        this.GetComponent<Rigidbody2D>().gravityScale = this.GravityScale;
     }
 
-    //Public
-    public virtual void SpawnNurdles()
+    public void Initialize(Vector3 inPos, float inRot)
     {
-        int NumNurds = 0;
-        while(NumNurds < this.NumNurdles)
-        {
-            //Grab Nurdles from Factory
-            NurdlesFactory.CreateNurdle(this.transform.position);
-
-            ++NumNurds;
-        }
+        this.transform.position = inPos;
+        this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, inRot);
     }
 
+    //Variables//
 
-
-    //Variables
     [SerializeField]
-    protected int NumNurdles;
+    protected float GravityScale = 0.05f;
 }

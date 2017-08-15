@@ -14,15 +14,9 @@ public class CameraFollow : MonoBehaviour
         this.transform.position = this.vCurrentPos;
 	}
 
-    //Public Functions
-    public void AssignTarget(Transform inTrans)
-    {
-        this.Target = inTrans;
-    }
-
     //Variables//
 
     //Private
     private Vector3 vCurrentPos;
-    private Transform Target;
+    public Transform Target;
 }
