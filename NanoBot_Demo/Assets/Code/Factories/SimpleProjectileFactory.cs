@@ -30,6 +30,9 @@ public class SimpleProjectileFactory
         //Add to Active Stack
         this.ActiveProjectileList.Insert(0, this.PC);
 
+        //Activate
+        this.PC.gameObject.SetActive(true);
+
         //Initialize
         this.PC.Initialize(inPos, inRot);
     }

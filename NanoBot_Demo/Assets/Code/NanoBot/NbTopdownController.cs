@@ -7,7 +7,7 @@ public class NbTopdownController : NanoBotController
     //Functions//
 
     //GO Functions
-    private void Awake()
+    private void Start()
     {
         base.Initialize();
 

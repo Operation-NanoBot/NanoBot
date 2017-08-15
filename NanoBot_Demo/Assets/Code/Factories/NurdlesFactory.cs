@@ -1,70 +1,64 @@
 ﻿using UnityEngine;
 
-public class NurdlesFactory : MonoBehaviour
+public class NurdlesFactory
 {
     //Functions//
 
-    //GO Functions
-    private void Awake()
+    //Constructor
+    public NurdlesFactory(GameObject Prefab)
     {
-        if (Instance == null)
-        {
-            //Set Instance to this
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            //Destroy that instance so only one remains
-            Destroy(gameObject);
-            return;
-        }
+        //Initiation
+        this.NurdlesPrefab = Prefab;
+        this.ActiveNurdleList = new System.Collections.Generic.List<NurdlesController>();
+        this.InactiveNurdleStack = new System.Collections.Generic.Stack<NurdlesController>();
 
-        //So this permeates through all Scenes
-        DontDestroyOnLoad(gameObject);
     }
 
-    //Functions to be public
-    private void privCreateNurdle(Vector3 inPos)
+    public void GetNurdle(Vector3 inPos)
     {
-        if(this.InactiveNurdleStack.Count == 0)
+        if (this.InactiveNurdleStack.Count == 0)
         {
-            //Create New Nurdle
-            this.NurdleHolder = Instantiate<GameObject>(this.NurdlePrefab, inPos, Quaternion.identity);
+            //Create New Instance
+            this.NC = GameObject.Instantiate<GameObject>(this.NurdlesPrefab).GetComponent<NurdlesController>();
         }
         else
         {
-            //Grab From Inactive List
-            this.NurdleHolder = this.InactiveNurdleStack.Pop();
-            this.NurdleHolder.SetActive(true);
+            //Grab from Inactive Stack
+            this.NC = this.InactiveNurdleStack.Pop();
         }
 
         //Add to Active Stack
-        this.ActiveNurdleStack.Push(this.NurdleHolder);
+        this.ActiveNurdleList.Insert(0, this.NC);
 
-        //Set Force and Rotation
-        this.NurdleHolder.GetComponent<NurdlesController>().InitializeNurdle();
+        //Activate
+        this.NC.gameObject.SetActive(true);
+
+        //Initialize
+        this.NC.InitializeNurdle(inPos);
     }
 
-    //Public Static Functions
-    public static void CreateNurdle(Vector3 inPos)
+    public void Return(NurdlesController inNC)
     {
-        Instance.privCreateNurdle(inPos);
+        //Deactivate GO
+        inNC.gameObject.SetActive(false);
+
+        //Remove from active list
+        this.ActiveNurdleList.Remove(inNC);
+
+        //Add to Inactive Stack
+        this.InactiveNurdleStack.Push(inNC);
     }
 
     //Variables//
 
-    //Instance
-    private static NurdlesFactory Instance = null;
-    
-    //GameObjects
-    public GameObject NurdlePrefab;
-    private GameObject NurdleHolder;
+    //Stacks
+    private System.Collections.Generic.List<NurdlesController> ActiveNurdleList;
+    private System.Collections.Generic.Stack<NurdlesController> InactiveNurdleStack;
 
-    //List
-    private System.Collections.Generic.Stack<GameObject> ActiveNurdleStack = new System.Collections.Generic.Stack<GameObject>();
-    private System.Collections.Generic.Stack<GameObject> InactiveNurdleStack = new System.Collections.Generic.Stack<GameObject>();
+    //Prefab
+    private GameObject NurdlesPrefab;
 
-    //NurdleController
-    private NurdlesController NC;
+    //Holders
+    NurdlesController NC;
 
 }

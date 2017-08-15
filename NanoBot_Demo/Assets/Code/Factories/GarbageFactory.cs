@@ -5,21 +5,23 @@ public class GarbageFactory
     //Functions//
 
     //Constructor
-    public GarbageFactory(GameObject Prefab)
+    public GarbageFactory(GameObject D_Prefab, GameObject I_Prefab)
     {
         //Initiation
-        this.GarbagePrefab = Prefab;
+        this.DestructibleGarbagePrefab = D_Prefab;
+        this.IndestructibleGarbagePrefab = I_Prefab;
+
         this.ActiveGarbageList = new System.Collections.Generic.List<GarbageBase>();
         this.InactiveGarbageStack = new System.Collections.Generic.Stack<GarbageBase>();
 
     }
 
-    public void GetProjectile(Vector3 inPos, float inRot)
+    public void GetDestructibleGarbage(Transform inParent, Vector3 inPos, float inRot)
     {
         if (this.InactiveGarbageStack.Count == 0)
         {
             //Create New Instance
-            this.GB = GameObject.Instantiate<GameObject>(this.GarbagePrefab).GetComponent<GarbageBase>();
+            this.GB = GameObject.Instantiate<GameObject>(this.DestructibleGarbagePrefab, inParent).GetComponent<GarbageBase>();
         }
         else
         {
@@ -31,7 +33,30 @@ public class GarbageFactory
         this.ActiveGarbageList.Insert(0, this.GB);
 
         //Initialize
-        //this.GB.Initialize(inPos, inRot);
+        this.GB.Initialize(inPos, inRot);
+    }
+
+    public void GetIndestructibleGarbage(Transform inParent, Vector3 inPos, float inRot)
+    {
+        if (this.InactiveGarbageStack.Count == 0)
+        {
+            //Create New Instance
+            this.GB = GameObject.Instantiate<GameObject>(this.IndestructibleGarbagePrefab, inParent).GetComponent<GarbageBase>();
+        }
+        else
+        {
+            //Grab from Inactive Stack
+            this.GB = this.InactiveGarbageStack.Pop();
+        }
+
+        //Add to Active Stack
+        this.ActiveGarbageList.Insert(0, this.GB);
+
+        //Activate
+        this.GB.gameObject.SetActive(true);
+
+        //Initialize
+        this.GB.Initialize(inPos, inRot);
     }
 
     public void Return(GarbageBase inGB)
@@ -53,7 +78,8 @@ public class GarbageFactory
     private System.Collections.Generic.Stack<GarbageBase> InactiveGarbageStack;
 
     //Prefab
-    private GameObject GarbagePrefab;
+    private GameObject DestructibleGarbagePrefab;
+    private GameObject IndestructibleGarbagePrefab;
 
     //Holders
     private GarbageBase GB;

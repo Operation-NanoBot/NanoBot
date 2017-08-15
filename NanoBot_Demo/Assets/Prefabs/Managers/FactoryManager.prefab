@@ -53,3 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   simpleProjectilePrefab: {fileID: 1029415462587484, guid: cc6f86fac46bf8d4895d4e656d535523,
     type: 2}
+  destructibleGarbagePrefab: {fileID: 1988330289193604, guid: 606affea28086784bb9cae27044ff6b4,
+    type: 2}
+  indestructibleGarbagePrefab: {fileID: 1991086242752828, guid: 00440a63b68a1124e927ca67045af54c,
+    type: 2}
+  NurdlePrefab: {fileID: 1255707430048474, guid: d5fbf782afa26214eaf895e841bc9901,
+    type: 2}

@@ -27,15 +27,12 @@ public class ProjectileController : MonoBehaviour
     //Collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this.gameObject);
+        this.DestroyProjectile();
     }
 
     //Rotation
     public void Initialize(Vector3 inPos, float inRot)
-    {
-        //Activate
-        this.gameObject.SetActive(true);
-
+    { 
         //Set Rotation
         this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, inRot);
         this.transform.position = inPos;
@@ -48,6 +45,12 @@ public class ProjectileController : MonoBehaviour
     IEnumerator DestroySelf()
     {
         yield return new WaitForSeconds(DestroyTime);
+        DestroyProjectile();
+    }
+
+    //Private
+    private void DestroyProjectile()
+    {
         FactoryManager.ReturnSimpleProjectile(this);
     }
 
