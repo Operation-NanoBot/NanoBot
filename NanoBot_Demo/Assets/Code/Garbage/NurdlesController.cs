@@ -9,13 +9,20 @@ public class NurdlesController : MonoBehaviour
     //GO Functions
     private void Awake()
     {
+        //Grab Components
         this.RB = this.GetComponent<Rigidbody2D>();
+
+        //Set Energy
+        this.EnergyAmount = 0.1f;
     }
 
     //Collisions
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        this.DestroyNurdle();
+        if (collision.gameObject.GetComponent<NbSidescrollController>() != null)
+        {
+            this.DestroyNurdle();
+        }
     }
 
     //Public Functions
@@ -27,6 +34,12 @@ public class NurdlesController : MonoBehaviour
 
         this.RB.AddForce(Random.onUnitSphere * Random.Range(MinForce, MaxForce));
         this.RB.AddTorque(Random.Range(MinTorque, MaxTorque));
+    }
+
+    //Getters
+    public float GetEnergyAmount()
+    {
+        return this.EnergyAmount;
     }
 
     //Private
@@ -41,6 +54,9 @@ public class NurdlesController : MonoBehaviour
 
     //Componenets
     private Rigidbody2D RB;
+
+    //Energy
+    private float EnergyAmount;
 
     //Physics
     [SerializeField]

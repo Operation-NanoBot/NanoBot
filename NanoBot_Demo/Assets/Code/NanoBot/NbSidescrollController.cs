@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NbSidescrollController : NanoBotController
 {
@@ -17,6 +15,7 @@ public class NbSidescrollController : NanoBotController
 
         //Grab Components
         this.Missile_Transform = GetComponentsInChildren<Transform>()[2];
+        this.energyMeter = FindObjectOfType<EnergyMeterController>();
 
         //Set Physics Data
         //this.RB.centerOfMass = new Vector2(0.0f, 1.0f);
@@ -33,6 +32,16 @@ public class NbSidescrollController : NanoBotController
     private void FixedUpdate()
     {
         this.controllerStrategy.SideView_Update(this);
+    }
+
+    //Collision
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        NurdlesController NC = collision.gameObject.GetComponent<NurdlesController>();
+        if(NC != null)
+        {
+            this.AddEnergy(NC.GetEnergyAmount());
+        }
     }
 
     //Level Initialization
@@ -73,6 +82,17 @@ public class NbSidescrollController : NanoBotController
         this.weaponStrategy.Fire(this);
     }
 
+    //Energy Functions
+    public void AddEnergy(float inVal)
+    {
+        this.energyMeter.AddEnergy(inVal);
+    }
+
+    public void MinusEnergy(float inVal)
+    {
+        this.energyMeter.MinusEnergy(inVal);
+    }
+
     //Get Functions
     public Vector3 GetMissilePosition()
     {
@@ -86,6 +106,7 @@ public class NbSidescrollController : NanoBotController
 
     //Components
     private Transform Missile_Transform;
+    private EnergyMeterController energyMeter;
 
     //Physics
     [SerializeField]
