@@ -11,9 +11,6 @@ public class NurdlesController : MonoBehaviour
     {
         //Grab Components
         this.RB = this.GetComponent<Rigidbody2D>();
-
-        //Set Energy
-        this.EnergyAmount = 0.1f;
     }
 
     //Collisions
@@ -39,7 +36,7 @@ public class NurdlesController : MonoBehaviour
     //Getters
     public float GetEnergyAmount()
     {
-        return this.EnergyAmount;
+        return this.nurdleLevel.GetEnergy();
     }
 
     //Private
@@ -55,8 +52,8 @@ public class NurdlesController : MonoBehaviour
     //Componenets
     private Rigidbody2D RB;
 
-    //Energy
-    private float EnergyAmount;
+    //Level
+    private Nurdle_Level nurdleLevel;
 
     //Physics
     [SerializeField]
