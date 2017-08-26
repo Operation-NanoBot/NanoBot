@@ -21,7 +21,7 @@ TagManager:
   - Background
   - Platform
   - Foreground
-  - Invisible
+  - 
   - 
   - 
   - 
@@ -38,9 +38,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Invisible
-    uniqueID: 4075345129
-    locked: 0
   - name: Background
     uniqueID: 2314352079
     locked: 0
