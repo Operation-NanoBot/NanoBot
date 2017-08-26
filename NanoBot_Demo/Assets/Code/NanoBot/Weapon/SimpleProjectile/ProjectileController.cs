@@ -20,7 +20,7 @@ public class ProjectileController : MonoBehaviour
         //Limit Max Velocity
         if (this.RB.velocity.sqrMagnitude < (MaxVelocity * MaxVelocity))
         {
-            this.RB.MovePosition(this.transform.position + (this.transform.up * ProjectileSpeed));
+            this.RB.MovePosition(this.transform.position + (this.transform.up * ProjectileSpeed * this.DirectionMult));
         }
     }
 
@@ -31,10 +31,10 @@ public class ProjectileController : MonoBehaviour
     }
 
     //Rotation
-    public void Initialize(Vector3 inPos, float inRot)
-    { 
+    public void Initialize(Vector3 inPos, float inDir)
+    {
         //Set Rotation
-        this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, inRot);
+        this.DirectionMult = inDir;
         this.transform.position = inPos;
 
         //Start Coroutine
@@ -66,4 +66,6 @@ public class ProjectileController : MonoBehaviour
     private float ProjectileSpeed = 0.5f;
     [SerializeField]
     private float DestroyTime = 4.0f;
+
+    private float DirectionMult;
 }

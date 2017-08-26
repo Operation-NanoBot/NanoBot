@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿public class NB_SS_Direction_Left_State : NB_SS_Direction_State
+{
 
-public class NB_SS_Direction_Left_State : MonoBehaviour {
+    //Functions
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    //Constructor
+    public NB_SS_Direction_Left_State()
+    {
+        this.DirMult = -1.0f;
+    }
+
+    public override void Update(NbSidescrollController NB, ControllerStrategy Controller)
+    {
+        Controller.SideView_Update_Left_Direction(NB);
+    }
 }

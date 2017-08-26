@@ -35,9 +35,9 @@ public class FactoryManager : MonoBehaviour
     //Private Functions to be public//
 
     //Simple Projectile
-    private void privCreateSimpleProjectile(Vector3 inPos, float inRot)
+    private void privCreateSimpleProjectile(Vector3 inPos, float inDir)
     {
-        this.simpleProjectileFactory.GetProjectile(this.HolderArr[0], inPos, inRot);
+        this.simpleProjectileFactory.GetProjectile(this.HolderArr[0], inPos, inDir);
     }
 
     private void privReturnSimpleProjectile(ProjectileController inPC)
@@ -82,9 +82,9 @@ public class FactoryManager : MonoBehaviour
 
     //Static Public Functions
     //Projectile
-    public static void CreateSimpleProjectile(Vector3 inPos, float inRot)
+    public static void CreateSimpleProjectile(Vector3 inPos, float inDir)
     {
-        Instance.privCreateSimpleProjectile(inPos, inRot);
+        Instance.privCreateSimpleProjectile(inPos, inDir);
     }
 
     public static void ReturnSimpleProjectile(ProjectileController inPC)
