@@ -20,31 +20,6 @@ public class NanoBotController : MonoBehaviour
         this.RB.gravityScale = 0.0f;
     }
 
-    //Weapon Functions
-    //public void Fire_Weapon()
-    //{
-    //    this.weaponStrategy.Fire(this);
-    //}
-
-    //public void Firing()
-    //{
-    //    this.firingState = new Firing_On_State();
-    //}
-
-    //public void NotFiring()
-    //{
-    //    this.firingState = new Firing_Off_State();
-    //}
-
-    ////Get Functions
-    //public Vector3 GetMissilePosition()
-    //{
-    //    return this.MissileTransform.position;
-    //}
-
-
-    //Variables//
-
     //Private//
 
     //Strategy
