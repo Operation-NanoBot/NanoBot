@@ -10,12 +10,19 @@
 
     public abstract void Update(NbSidescrollController NB, ControllerStrategy Controller);
 
-    public float GetMult()
+    //Visitor Pattern Functions//
+
+    //Fire State
+    public void VisitCanFire(NbSidescrollController NB, Weapon_Projectile WP)
     {
-        return this.DirMult;
+        FactoryManager.CreateSimpleProjectile(NB.GetNosePosition(), this.MissileRot);
+        WP.ChangeToCooldown(NB);
     }
 
     //Variables//
 
-    protected float DirMult;
+    //Protected
+    protected float MissileRot;
+
+
 }

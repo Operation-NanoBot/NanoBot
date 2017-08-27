@@ -21,10 +21,7 @@ public class NurdlesController : MonoBehaviour
     //Collisions
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<NbSidescrollController>() != null)
-        {
-            this.DestroyNurdle();
-        }
+        
     }
 
     //Public Functions

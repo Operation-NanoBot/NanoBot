@@ -9,6 +9,6 @@ public abstract class WeaponStrategy
 
     }
 
-    public abstract void Fire(NbSidescrollController NC);
+    public abstract void Fire(NbSidescrollController NC, NB_SS_Direction_State dirState);
 	
 }

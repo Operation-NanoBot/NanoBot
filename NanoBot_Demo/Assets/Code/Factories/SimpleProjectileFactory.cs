@@ -14,7 +14,7 @@ public class SimpleProjectileFactory
         
     }
 
-    public void GetProjectile(Transform parent, Vector3 inPos, float inDir)
+    public void GetProjectile(Transform parent, Vector3 inPos, float inRot)
     {
         if(this.InactiveProjectileStack.Count == 0)
         {
@@ -34,7 +34,7 @@ public class SimpleProjectileFactory
         this.PC.gameObject.SetActive(true);
 
         //Initialize
-        this.PC.Initialize(inPos, inDir);
+        this.PC.Initialize(inPos, inRot);
     }
 
     public void Return(ProjectileController inPC)

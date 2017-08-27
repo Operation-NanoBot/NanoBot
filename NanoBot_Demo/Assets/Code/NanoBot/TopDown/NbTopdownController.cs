@@ -17,6 +17,7 @@ public class NbTopdownController : NanoBotController
         //Set Physics Data
         this.RB.drag = this.LinearDrag;
         this.RB.angularDrag = this.AngularDrag;
+        this.RB.gravityScale = 0.0f;
 
         //Grab Data From GameManager;
         this.InitializeLevel(GameManager.GetData());

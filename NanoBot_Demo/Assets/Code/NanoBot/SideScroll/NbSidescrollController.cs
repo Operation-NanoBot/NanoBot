@@ -17,12 +17,13 @@ public class NbSidescrollController : NanoBotController
 
 
         //Grab Components
-        this.Missile_Transform = GetComponentsInChildren<Transform>()[1];
+        this.Nose_Transform = GetComponentsInChildren<Transform>()[1];
         this.energyMeter = FindObjectOfType<EnergyMeterController>();
 
         //Set Physics Data
         //this.RB.centerOfMass = new Vector2(0.0f, 1.0f);
         this.RB.drag = this.LinearDrag;
+        this.RB.gravityScale = 0.05f;
 
         //Level Initialization
         this.InitializeLevel(GameManager.GetData());
@@ -36,11 +37,11 @@ public class NbSidescrollController : NanoBotController
     //Collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        NurdlesController NC = collision.gameObject.GetComponent<NurdlesController>();
-        if(NC != null)
-        {
-            this.AddEnergy(NC.GetEnergyAmount());
-        }
+        //NurdlesController NC = collision.gameObject.GetComponent<NurdlesController>();
+        //if(NC != null)
+        //{
+        //    this.AddEnergy(NC.GetEnergyAmount());
+        //}
     }
 
     //Level Initialization
@@ -84,8 +85,8 @@ public class NbSidescrollController : NanoBotController
         //Flip the Sprite
         this.SR.flipX = false;
 
-        //Move the Missile Position
-        this.Missile_Transform.localPosition = new Vector3(1.5f, 0.0f);
+        //Move the Nose Position
+        this.Nose_Transform.localPosition = new Vector3(1.5f, 0.0f);
     }
 
     public void ChangeToLeftState()
@@ -96,14 +97,14 @@ public class NbSidescrollController : NanoBotController
         //Flip the Sprite
         this.SR.flipX = true;
 
-        //Move the Missile Position
-        this.Missile_Transform.localPosition = new Vector3(-1.5f, 0.0f);
+        //Move the Nose Position
+        this.Nose_Transform.localPosition = new Vector3(-1.5f, 0.0f);
     }
 
     //Weapon Functions
     public void FireWeapon()
     {
-        this.weaponStrategy.Fire(this);
+        this.weaponStrategy.Fire(this, this.directionState);
     }
 
     //Energy Functions
@@ -118,14 +119,9 @@ public class NbSidescrollController : NanoBotController
     }
 
     //Get Functions
-    public Vector3 GetMissilePosition()
+    public Vector3 GetNosePosition()
     {
-        return this.Missile_Transform.position;
-    }
-
-    public float GetDirectionMult()
-    {
-        return this.directionState.GetMult();
+        return this.Nose_Transform.position;
     }
 
     //Variables//
@@ -140,7 +136,7 @@ public class NbSidescrollController : NanoBotController
     private WeaponStrategy weaponStrategy;
 
     //Components
-    private Transform Missile_Transform;
+    private Transform Nose_Transform;
     private EnergyMeterController energyMeter;
 
     //Physics

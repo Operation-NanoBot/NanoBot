@@ -6,14 +6,14 @@ public class SimpleProjectile_NoFireState : SimpleProjectile_FireState
 
     //Constructor
     public SimpleProjectile_NoFireState()
-        :base()
+        : base()
     {
 
     }
 
-    //Override
-    public override void FireProjectile(NbSidescrollController NB, Weapon_Projectile WP)
+    //Accept Functions
+    public override void Accept(NbSidescrollController NB, Weapon_Projectile WP, NB_SS_Direction_State dirState)
     {
-        //Intentionally left blank
+        //Intentionally does nothing
     }
 }
