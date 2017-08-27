@@ -75,4 +75,7 @@ public class NurdlesFactory
     //Holders
     NurdlesController NC;
 
+    //Variables to Pass in
+
+
 }

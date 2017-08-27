@@ -11,6 +11,7 @@ public class NurdlesController : MonoBehaviour
     {
         //Grab Components
         this.RB = this.GetComponent<Rigidbody2D>();
+        this.Target = FindObjectOfType<NbSidescrollController>().transform;
     }
 
     private void Start()
@@ -18,10 +19,28 @@ public class NurdlesController : MonoBehaviour
         this.nurdleLevel = new NurdleLevelOne();
     }
 
-    //Collisions
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
     {
-        
+        this.nurdleState.Update(this);
+    }
+
+    //Collisions
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        SonicNet SN = collision.gameObject.GetComponent<SonicNet>();
+        if (SN != null)
+        {
+            this.nurdleState.TriggerEnter(collision, this);
+        }
+        else if(collision.gameObject.GetComponent<EnergyCollector>() != null)
+        {
+            this.DestroyNurdle();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        this.nurdleState.TriggerExit(collision, this);
     }
 
     //Public Functions
@@ -30,9 +49,26 @@ public class NurdlesController : MonoBehaviour
     public void InitializeNurdle(Vector3 inPos)
     {
         this.transform.position = inPos;
+        this.nurdleState = floatState;
 
         this.RB.AddForce(Random.onUnitSphere * Random.Range(MinForce, MaxForce));
         this.RB.AddTorque(Random.Range(MinTorque, MaxTorque));
+    }
+
+    public void MoveTowardTarget()
+    {
+        this.RB.AddForce((this.Target.position - this.transform.position).normalized * this.MoveForce);
+    }
+
+    //State Changes
+    public void SuckState()
+    {
+        this.nurdleState = suckState;
+    }
+
+    public void FloatState()
+    {
+        this.nurdleState = floatState;
     }
 
     //Getters
@@ -53,6 +89,12 @@ public class NurdlesController : MonoBehaviour
 
     //Componenets
     private Rigidbody2D RB;
+    private Transform Target;
+
+    //State
+    private NurdleState nurdleState;
+    private static Nurdle_Float_State floatState = new Nurdle_Float_State();
+    private static Nurdle_Suck_State suckState = new Nurdle_Suck_State();
 
     //Level
     private Nurdle_Level nurdleLevel;
@@ -66,6 +108,8 @@ public class NurdlesController : MonoBehaviour
     private float MinForce;
     [SerializeField]
     private float MaxForce;
+    [SerializeField]
+    private float MoveForce = 5.0f;
 
 
 }

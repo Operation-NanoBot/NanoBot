@@ -79,14 +79,24 @@ public class KeyboardController : ControllerStrategy
             pNB.SV_MoveDown();
         }
 
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            pNB.SV_Ascend();
-        }
+        //if (Input.GetKeyUp(KeyCode.E))
+        //{
+        //    pNB.SV_Ascend();
+        //}
 
         if (Input.GetKey(KeyCode.Space))
         {
             pNB.FireWeapon();
+        }
+
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            pNB.ActivateSonicNet();
+        }
+
+        if(Input.GetKeyUp(KeyCode.J))
+        {
+            pNB.DeactivateSonicNet();
         }
     }
 }
