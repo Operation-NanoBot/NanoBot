@@ -12,21 +12,21 @@ public class Weapon_Projectile : WeaponStrategy
         :base()
     {
         //Set Fire State
-        this.fireState = new SimpleProjectile_CanFireState();
+        this.fireState = canFire;
 
         this.CooldownTime = inTime;
     }
 
     //Overridden Functions
-    public override void Fire(NbSidescrollController NC)
+    public override void Fire(NbSidescrollController NC, NB_SS_Direction_State dirState)
     {
-        this.fireState.FireProjectile(NC, this);
+        this.fireState.Accept(NC, this, dirState);
     }
 
     //Weapon Functions
     public void ChangeToCooldown(NbSidescrollController NB)
     {
-        this.fireState = new SimpleProjectile_NoFireState();
+        this.fireState = noFire;
         NB.StartCoroutine(Cooldown());
         
     }
@@ -34,13 +34,15 @@ public class Weapon_Projectile : WeaponStrategy
     IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(CooldownTime);
-        this.fireState = new SimpleProjectile_CanFireState();
+        this.fireState = canFire;
     }
 
     //Variables//
 
     //Strategy
     private SimpleProjectile_FireState fireState;
+    private static SimpleProjectile_CanFireState canFire = new SimpleProjectile_CanFireState();
+    private static SimpleProjectile_NoFireState noFire = new SimpleProjectile_NoFireState();
 
     [SerializeField]
     private float CooldownTime;

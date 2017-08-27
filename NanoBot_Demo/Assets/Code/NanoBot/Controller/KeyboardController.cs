@@ -39,24 +39,44 @@ public class KeyboardController : ControllerStrategy
         }
     }
 
-    public override void SideView_Update(NbSidescrollController pNB)
+    public override void SideView_Update_Right_Direction(NbSidescrollController pNB)
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            pNB.SV_MoveForward();
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            pNB.SV_MoveBackward();
-        }
+        this.CheckKeyPresses(pNB);
 
         if (Input.GetKey(KeyCode.D))
         {
-            pNB.SV_RotateCW();
+            pNB.SV_MoveRight();
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            pNB.SV_RotateCCW();
+            pNB.ChangeToLeftState();
+        }
+    }
+
+    public override void SideView_Update_Left_Direction(NbSidescrollController pNB)
+    {
+        this.CheckKeyPresses(pNB);
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            pNB.SV_MoveLeft();
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            pNB.ChangeToRightState();
+        }
+    }
+
+    //Private Functions
+    private void CheckKeyPresses(NbSidescrollController pNB)
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            pNB.SV_MoveUp();
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            pNB.SV_MoveDown();
         }
 
         if (Input.GetKeyUp(KeyCode.E))

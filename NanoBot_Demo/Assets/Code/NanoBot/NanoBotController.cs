@@ -14,10 +14,6 @@ public class NanoBotController : MonoBehaviour
         //Grab Necessary Components
         this.SR = this.GetComponent<SpriteRenderer>();
         this.RB = this.GetComponent<Rigidbody2D>();
-        this.ThrustTransform = this.GetComponentsInChildren<Transform>()[1];
-
-        //Set Physics Data
-        this.RB.gravityScale = 0.0f;
     }
 
     //Private//

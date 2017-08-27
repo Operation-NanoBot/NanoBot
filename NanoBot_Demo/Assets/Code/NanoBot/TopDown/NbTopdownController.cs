@@ -11,10 +11,13 @@ public class NbTopdownController : NanoBotController
     {
         base.Initialize();
 
+        //Grab Components
+        this.ThrustTransform = this.GetComponentsInChildren<Transform>()[1];
+
         //Set Physics Data
-        //this.RB.centerOfMass = new Vector2(0.0f, 1.0f);
         this.RB.drag = this.LinearDrag;
         this.RB.angularDrag = this.AngularDrag;
+        this.RB.gravityScale = 0.0f;
 
         //Grab Data From GameManager;
         this.InitializeLevel(GameManager.GetData());

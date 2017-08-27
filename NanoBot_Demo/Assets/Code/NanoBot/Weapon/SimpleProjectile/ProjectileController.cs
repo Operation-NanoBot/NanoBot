@@ -32,7 +32,7 @@ public class ProjectileController : MonoBehaviour
 
     //Rotation
     public void Initialize(Vector3 inPos, float inRot)
-    { 
+    {
         //Set Rotation
         this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, inRot);
         this.transform.position = inPos;
@@ -66,4 +66,6 @@ public class ProjectileController : MonoBehaviour
     private float ProjectileSpeed = 0.5f;
     [SerializeField]
     private float DestroyTime = 4.0f;
+
+    private float DirectionMult;
 }

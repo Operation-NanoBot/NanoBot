@@ -12,6 +12,9 @@ public abstract class ControllerStrategy
 
     //Abstract Functions
     public abstract void TopDown_Update(NbTopdownController pNB);
-    public abstract void SideView_Update(NbSidescrollController pNB);
+
+
+    public abstract void SideView_Update_Right_Direction(NbSidescrollController pNB);
+    public abstract void SideView_Update_Left_Direction(NbSidescrollController pNB);
 	
 }

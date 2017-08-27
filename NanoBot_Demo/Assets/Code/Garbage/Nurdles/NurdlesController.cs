@@ -13,13 +13,15 @@ public class NurdlesController : MonoBehaviour
         this.RB = this.GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        this.nurdleLevel = new NurdleLevelOne();
+    }
+
     //Collisions
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<NbSidescrollController>() != null)
-        {
-            this.DestroyNurdle();
-        }
+        
     }
 
     //Public Functions
