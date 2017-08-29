@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
     //GO Functions
 	void Update ()
     {
-        this.vCurrentPos.Set(Target.transform.position.x, Target.transform.position.y, -10.0f);
+        this.vCurrentPos.Set(Target.transform.position.x, Target.transform.position.y, -20.0f);
         this.transform.position = this.vCurrentPos;
 	}
 
