@@ -1,3 +1,13 @@
+9/1/17:
+-Created a new scene, named it "3_SideScroll_Scene_Arted" and renamed the previous "3_SideScroll_Scene_Graybox".
+-Imported Atiya's art assets and assembled level based on graybox design.
+-Level now has environment assets.
+-Additional folders made in the Resources folder named "Environment" and "Garbage".
+-Additional garbage items imported and prefabbed, ready to be scripted in the garbage generator.
+-Swapped player character sprite with updated art asset.
+-Bug report: In swapping the player character sprite, I had to break the prefab. Controls still work, but the player's shoot and net ability
+are offset. They now instantiate away from the player to the sides of the screen in whichever direction the player faces.
+
 8/28/17:
 -Redid previous changes in a new branch on GitHub.
 -Worked in "3_SideScroll_Scene_1"
