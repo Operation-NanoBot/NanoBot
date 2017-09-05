@@ -1,11 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\NanoBot\CameraFollow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Garbage\GarbageDestructible.cs">
     <Files>
       <File FileName="Assets\Code\NanoBot\NanoBotController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\NanoBot\CameraFollow.cs" Line="13" Column="91" />
+      <File FileName="Assets\Code\NanoBot\CameraFollow.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Factories\FactoryManager.cs" Line="87" Column="1" />
       <File FileName="Assets\Code\NanoBot\SonicNet\EnergyCollector.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\NanoBot\SideScroll\NbSidescrollController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\NanoBot\Weapon\WeaponStrategy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\NanoBot\Weapon\SimpleProjectile\ProjectileController.cs" Line="54" Column="17" />
+      <File FileName="Assets\Code\Garbage\GarbageSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Garbage\GarbageDestructible.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

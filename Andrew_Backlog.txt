@@ -1,3 +1,11 @@
+9/5/17:
+-Worked in "3_SideScroll_Scene_Arted".
+-Created large map borders and enlarged the background to obscure edges of the environment.
+-Bug Fix: Imported higher res character sprite, readjusted player mechanics offsetting.
+-Deleted graybox prefabs from scene, but the files remain in their respective folders.
+-Turned on additional Garbage Generators and Area Aggressors.
+-Bug report: Player bullet passes through environment. Should destroy on collision.
+
 9/1/17:
 -Created a new scene, named it "3_SideScroll_Scene_Arted" and renamed the previous "3_SideScroll_Scene_Graybox".
 -Imported Atiya's art assets and assembled level based on graybox design.
