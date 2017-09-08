@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         //Level Change
     private void privLoadLevel(int index)
     {
-        SceneManager.LoadSceneAsync(index);
+        SceneManager.LoadScene(index);
     }
 
     //Grabbing Current Player

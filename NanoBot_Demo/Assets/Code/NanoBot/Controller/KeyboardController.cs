@@ -32,11 +32,6 @@ public class KeyboardController : ControllerStrategy
         {
             pNB.TD_RotateCCW();
         }
-
-        if(Input.GetKeyUp(KeyCode.Q))
-        {
-            pNB.TD_Dive();
-        }
     }
 
     public override void SideView_Update_Right_Direction(NbSidescrollController pNB)

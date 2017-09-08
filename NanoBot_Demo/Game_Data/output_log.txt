@@ -1,0 +1,65 @@
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce 940M (ID=0x1347)
+    Vendor:   NVIDIA
+    VRAM:     4059 MB
+    Driver:   21.21.13.7654
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\Nathan Andre\Desktop\NanoBot\NanoBot\NanoBot_Demo\Game_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.069 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 3.925864 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.596694 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 370.
+Total: 0.403083 ms (FindLiveObjects: 0.063914 ms CreateObjectMapping: 0.063914 ms MarkObjects: 0.239330 ms  DeleteObjects: 0.031724 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.529980 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 397.
+Total: 0.370426 ms (FindLiveObjects: 0.054117 ms CreateObjectMapping: 0.043387 ms MarkObjects: 0.187079 ms  DeleteObjects: 0.083975 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.515984 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 726.
+Total: 0.571967 ms (FindLiveObjects: 0.090040 ms CreateObjectMapping: 0.063914 ms MarkObjects: 0.375558 ms  DeleteObjects: 0.041521 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 18.412607 ms
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 564.
+Total: 0.788905 ms (FindLiveObjects: 0.131095 ms CreateObjectMapping: 0.073245 ms MarkObjects: 0.397018 ms  DeleteObjects: 0.186612 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.307910 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 570.
+Total: 0.289716 ms (FindLiveObjects: 0.064847 ms CreateObjectMapping: 0.026125 ms MarkObjects: 0.174949 ms  DeleteObjects: 0.021926 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.323773 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 597.
+Total: 0.338702 ms (FindLiveObjects: 0.054117 ms CreateObjectMapping: 0.026125 ms MarkObjects: 0.229067 ms  DeleteObjects: 0.028924 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: adc -> priority: 1 
+  Thread -> id: 1228 -> priority: 1 

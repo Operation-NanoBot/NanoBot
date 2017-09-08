@@ -18,5 +18,8 @@ EditorBuildSettings:
     path: Assets/_Scenes/Game_Scenes/2_Overworld_Scene.unity
     guid: 7d06443b45555ee48bfcdbd6854e7f30
   - enabled: 1
-    path: Assets/_Scenes/Game_Scenes/3_SideScroll_Scene_1.unity
-    guid: 86146ccd827cd1e44929c7e8c0a0f78c
+    path: Assets/_Scenes/Game_Scenes/3_SideScroll_Scene_Arted.unity
+    guid: 3a80cb57c4664824fa9a5de12bc61dea
+  - enabled: 1
+    path: Assets/_Scenes/Game_Scenes/4_EndLeve_Scene.unity
+    guid: 6756039a1b748e34c8c249272bbf65c7
