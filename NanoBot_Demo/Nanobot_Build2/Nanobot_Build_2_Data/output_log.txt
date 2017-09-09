@@ -1,0 +1,59 @@
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce 940M (ID=0x1347)
+    Vendor:   NVIDIA
+    VRAM:     4059 MB
+    Driver:   21.21.13.7654
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\Nathan Andre\Desktop\Nanobot_Build_2_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.392 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 2.094260 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.303245 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 376.
+Total: 0.204807 ms (FindLiveObjects: 0.045253 ms CreateObjectMapping: 0.026592 ms MarkObjects: 0.115699 ms  DeleteObjects: 0.016795 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.346166 ms
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 398.
+Total: 0.194543 ms (FindLiveObjects: 0.050851 ms CreateObjectMapping: 0.027058 ms MarkObjects: 0.095639 ms  DeleteObjects: 0.020060 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.292048 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 727.
+Total: 0.290649 ms (FindLiveObjects: 0.048985 ms CreateObjectMapping: 0.028924 ms MarkObjects: 0.178681 ms  DeleteObjects: 0.033123 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 9.702460 ms
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 475.
+Total: 0.542109 ms (FindLiveObjects: 0.104503 ms CreateObjectMapping: 0.039188 ms MarkObjects: 0.309777 ms  DeleteObjects: 0.087241 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.237931 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 486.
+Total: 0.228134 ms (FindLiveObjects: 0.041521 ms CreateObjectMapping: 0.016795 ms MarkObjects: 0.153488 ms  DeleteObjects: 0.015862 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1650 -> priority: 1 
+  Thread -> id: 2170 -> priority: 1 
